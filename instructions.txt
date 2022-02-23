@@ -1,0 +1,129 @@
+Exercise - Create a blog single page app from a bootstrap template
+========
+
+➜  angular ls
+hello-world
+
+➜  angular ng new bootstraptempl
+Node.js version v17.3.0 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/releases/.
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? CSS
+CREATE bootstraptempl/README.md (1060 bytes)
+CREATE bootstraptempl/.editorconfig (274 bytes)
+CREATE bootstraptempl/.gitignore (620 bytes)
+CREATE bootstraptempl/angular.json (3087 bytes)
+CREATE bootstraptempl/package.json (1078 bytes)
+CREATE bootstraptempl/tsconfig.json (863 bytes)
+CREATE bootstraptempl/.browserslistrc (600 bytes)
+CREATE bootstraptempl/karma.conf.js (1431 bytes)
+CREATE bootstraptempl/tsconfig.app.json (287 bytes)
+CREATE bootstraptempl/tsconfig.spec.json (333 bytes)
+CREATE bootstraptempl/.vscode/extensions.json (130 bytes)
+CREATE bootstraptempl/.vscode/launch.json (474 bytes)
+CREATE bootstraptempl/.vscode/tasks.json (938 bytes)
+CREATE bootstraptempl/src/favicon.ico (948 bytes)
+CREATE bootstraptempl/src/index.html (300 bytes)
+CREATE bootstraptempl/src/main.ts (372 bytes)
+CREATE bootstraptempl/src/polyfills.ts (2338 bytes)
+CREATE bootstraptempl/src/styles.css (80 bytes)
+CREATE bootstraptempl/src/test.ts (745 bytes)
+CREATE bootstraptempl/src/assets/.gitkeep (0 bytes)
+CREATE bootstraptempl/src/environments/environment.prod.ts (51 bytes)
+CREATE bootstraptempl/src/environments/environment.ts (658 bytes)
+CREATE bootstraptempl/src/app/app-routing.module.ts (245 bytes)
+CREATE bootstraptempl/src/app/app.module.ts (393 bytes)
+CREATE bootstraptempl/src/app/app.component.css (0 bytes)
+CREATE bootstraptempl/src/app/app.component.html (23364 bytes)
+CREATE bootstraptempl/src/app/app.component.spec.ts (1097 bytes)
+CREATE bootstraptempl/src/app/app.component.ts (218 bytes)
+✔ Packages installed successfully.
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+    Successfully initialized git.
+➜  angular ls
+bootstraptempl  hello-world
+
+➜  angular cd bootstraptempl
+➜  bootstraptempl git:(master) code .
+
+Prep folder
+➜  bootstraptempl mkdir src/app/Components
+
+
+Google for "bootstrap templates"
+Selected "Small Business" template, the preview of it is available under
+d https://startbootstrap.com/previews/small-business
+The template src file for bootstrap page (from view frame source) is under
+view-source:https://startbootstrap.github.io/startbootstrap-small-business/#!
+
+The template contain the following external resources
+https://startbootstrap.github.io/startbootstrap-small-business/assets/favicon.ico
+https://dummyimage.com/900x400/dee2e6/6c757d.jpg ( will be replaced)
+https://startbootstrap.github.io/startbootstrap-small-business/css/styles.css
+https://startbootstrap.github.io/startbootstrap-small-business/js/scripts.js
+https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js
+
+footer of the above template use the following
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+The above code use CDN link
+But we wanted to include the physical bootstrap.bundle.min.js on the project
+So need to npm install bootstrap..
+
+Install bootstrap thru npm to get the related artifacts for bootstrap
+
+➜  bootstraptempl git:(master) ✗ npm install jquery
+
+added 1 package, and audited 1015 packages in 21s
+
+90 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+➜  bootstraptempl git:(master) ✗ npm install bootstrap
+
+added 2 packages, and audited 1017 packages in 2m
+
+92 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+➜
+
+This will install the packages on node_modules and update package.json
+with   "bootstrap": "^5.1.3",
+in addition to the angular packages already in package.json
+
+bootstraptempl/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
+
+Copy the external assets to assets folder
+➜  bootstraptempl git:(master) ✗ cd src/assets
+➜  assets git:(master) ✗ ls
+➜  assets git:(master) ✗ wget https://startbootstrap.github.io/startbootstrap-small-business/assets/favicon.ico
+➜  assets git:(master) ✗ wget https://startbootstrap.github.io/startbootstrap-small-business/css/styles.css
+➜  assets git:(master) ✗ wget https://startbootstrap.github.io/startbootstrap-small-business/js/scripts.js
+➜  assets git:(master) ✗ ls -l
+total 464
+-rw-r--r--  1 binu.varghese  staff   23462 Oct 18 19:25 favicon.ico
+-rw-r--r--  1 binu.varghese  staff     333 Oct 18 19:25 scripts.js
+-rw-r--r--  1 binu.varghese  staff  206551 Oct 18 19:25 styles.css
+➜  assets git:(master) ✗
+
+The syles.css from our template can replace the EMPTY src/styles.css that was created by default by ng create. The
+➜  assets git:(master) ✗ ls -l ../styles.css
+-rw-r--r--  1 binu.varghese  staff  80 Jan  6 18:03 ../styles.css
+➜  assets git:(master) ✗ cat ../styles.css
+/* You can add global styles to this file, and also import other style files */
+➜  assets git:(master) ✗ cp styles.css ../styles.css
+➜  assets git:(master) ✗ rm styles.css
